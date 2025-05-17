@@ -1,4 +1,8 @@
-import { drawKey, drawLamp, activateKeyDown, activateKeyUp, drawRotor, redrawAll, applyPermutation, invertKey} from './helper.js';
+import { drawKey, drawLamp, activateKeyDown, activateKeyUp, 
+  drawRotor, redrawAll, applyPermutation, invertKey,
+  make_inverse_rotor_permutation
+} from './helper.js';
+
 import {
   KEY_RADIUS, KEY_BORDER, KEY_BORDER_COLOR, KEY_BGCOLOR,
   KEY_UP_COLOR, KEY_DOWN_COLOR, KEY_LABEL_DY, KEY_FONT,
@@ -9,7 +13,10 @@ import {
   LAMP_LOCATIONS, posirot, poserot
 } from './constants.js';
 
+
 let offsets=[0,0,0];
+const INVERSE_ROTOR_PERMUTATIONS= make_inverse_rotor_permutation(ROTOR_PERMUTATIONS);
+
 
 window.onload = function () {
   const canvas = document.getElementById("canvas");
@@ -60,12 +67,18 @@ window.onload = function () {
         const dy = y - key.y;
         if (dx * dx + dy * dy < KEY_RADIUS * KEY_RADIUS) {
           currentKey = keyMap[letter];
-          advanceRotor(2);
-          redrawAll(ctx, offsets, enigmaImage );
-          for( let j=0;j<3;j++){
+
+
+          for(let j=2;j>=0;j-- ){
             index= applyPermutation(index, ROTOR_PERMUTATIONS[j],offsets[j]);
           }
+          index= REFLECTOR_PERMUTATION[index].charCodeAt(0)-65;
+          for(let j=0;j<3;j++){
+            index= applyPermutation(index, INVERSE_ROTOR_PERMUTATIONS[j],-offsets[j]);
+          }
 
+          advanceRotor(2);
+          redrawAll(ctx, offsets, enigmaImage );
           currentLamp = lightMap[String.fromCharCode(index+65)];
           activateKeyDown(ctx, currentKey, currentLamp);
           break;

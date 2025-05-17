@@ -105,4 +105,16 @@ export function invertKey(perm) {
     return arr.join('');
 }
 
+export function make_inverse_rotor_permutation(rotorperm) {
+  return rotorperm.map(perm => {
+    const inverse = new Array(26).fill('');
+    for (let i = 0; i < 26; i++) {
+      const outputChar = perm[i];
+      const outputIndex = outputChar.charCodeAt(0) - 65;
+      inverse[outputIndex] = String.fromCharCode(65 + i);
+    }
+    return inverse.join('');
+  });
+}
+
 
