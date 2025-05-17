@@ -68,16 +68,16 @@ window.onload = function () {
         if (dx * dx + dy * dy < KEY_RADIUS * KEY_RADIUS) {
           currentKey = keyMap[letter];
 
+          advanceRotor(2);
 
           for(let j=2;j>=0;j-- ){
             index= applyPermutation(index, ROTOR_PERMUTATIONS[j],offsets[j]);
           }
           index= REFLECTOR_PERMUTATION[index].charCodeAt(0)-65;
           for(let j=0;j<3;j++){
-            index= applyPermutation(index, INVERSE_ROTOR_PERMUTATIONS[j],-offsets[j]);
+            index= applyPermutation(index, INVERSE_ROTOR_PERMUTATIONS[j],offsets[j]);
           }
 
-          advanceRotor(2);
           redrawAll(ctx, offsets, enigmaImage );
           currentLamp = lightMap[String.fromCharCode(index+65)];
           activateKeyDown(ctx, currentKey, currentLamp);

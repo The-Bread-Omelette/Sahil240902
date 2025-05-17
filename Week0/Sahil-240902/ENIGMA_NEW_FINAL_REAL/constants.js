@@ -17,7 +17,7 @@ export const LAMP_FONT = "20px Arial";
 export const ROTOR_PERMUTATIONS = [
   "EKMFLGDQVZNTOWYHXUSPAIBRCJ",        /* Permutation for slow rotor      */
   "AJDKSIRUXBLHWTMCQGZNPYFVOE",        /* Permutation for medium rotor    */
-  "BDFHJLCPRTXVZNYEIWGAKMUSQO"         /* Permutation for fast rotor      */
+  "BFHJLCPRTXVZNYEIWGAKMUSQO"         /* Permutation for fast rotor      */
 ];
 
 export const ROTOR_BGCOLOR = "#BBAA77";       /* Background color for the rotor  */
