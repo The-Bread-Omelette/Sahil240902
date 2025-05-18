@@ -55,35 +55,34 @@ export function activateKeyUp(ctx, key, lamp) {
 
 export function drawRotor(ctx, number, offset) {
   const pos = ROTOR_LOCATIONS[number];
+  // Rotor background
   ctx.fillStyle = ROTOR_BGCOLOR;
   ctx.fillRect(pos.x - ROTOR_WIDTH / 2, pos.y - ROTOR_HEIGHT / 2, ROTOR_WIDTH, ROTOR_HEIGHT);
+  // Rotor text (show position/offset)
   ctx.fillStyle = ROTOR_COLOR;
   ctx.font = ROTOR_FONT;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   ctx.fillText(
-    String.fromCharCode('A'.charCodeAt(0) + offset),
+    String.fromCharCode('A'.charCodeAt(0) + offset), // Show current rotor position
     pos.x,
     pos.y
   );
 }
 
-
-export function redrawAll(ctx,offsets,enigmaImage) {
-    // Clear canvas and redraw everything
-    ctx.drawImage(enigmaImage, 0, 0);
-
-    // Redraw keys and lamps
-    for (let i = 0; i < alphabet.length; i++) {
+export function redrawAll(ctx, offsets, enigmaImage) {
+  // Clear canvas and redraw everything
+  ctx.drawImage(enigmaImage, 0, 0);
+  // Redraw keys and lamps
+  for (let i = 0; i < alphabet.length; i++) {
     const letter = alphabet[i];
     drawKey(ctx, KEY_LOCATIONS[i].x, KEY_LOCATIONS[i].y, letter, false);
     drawLamp(ctx, LAMP_LOCATIONS[i].x, LAMP_LOCATIONS[i].y, letter, false);
-    }
-
-    // Redraw rotors with current offsets
-    for (let i = 0; i < 3; i++) {
+  }
+  // Redraw rotors with current offsets
+  for (let i = 0; i < 3; i++) {
     drawRotor(ctx, i, offsets[i]);
-    }
+  }
 }
 
 export function applyPermutation(index, permutation, offset) {

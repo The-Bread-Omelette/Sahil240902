@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=800, initial-scale=1.0"/>
+  <title>Enigma Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- INTRO SCREEN -->
+  <div id="intro-screen">
+    <h1 class="intro-title">ENIGMA SIMULATOR</h1>
+    <button id="start-btn">Start</button>
+  </div>
+
+  <!-- MAIN APP -->
+  <div id="app-container" style="display: none;">
+    <div id="sidebar">
+      <h1 class="main-title">ENIGMA SIMULATOR</h1>
+      <button class="vintage-btn" id="reset-btn">Reset Offsets</button>
+      <button class="vintage-btn" id="config-btn">Configure</button>
+    </div>
+    <div id="main-content">
+      <canvas id="canvas" width="800" height="600"></canvas>
+    </div>
+  </div>
+
+  <!-- Configuration Modal -->
+  <div id="config-modal" style="display:none;">
+    <div class="modal-bg"></div>
+    <div class="modal-content">
+      <h2>Configure Enigma</h2>
+      <button id="config-rotors-btn" class="config-option">Configure Rotors</button>
+      <button id="config-plugboard-btn" class="config-option">Configure Plugboard</button>
+    </div>
+  </div>
+
+  <!-- Plugboard Configuration Screen -->
+  <div id="plugboard-screen" class="config-screen">
+    <div class="config-header">
+      <h2>Plugboard Configuration</h2>
+      <button id="plugboard-back" class="back-btn">Back</button>
+    </div>
+    <div id="plugboard-area"></div>
+    <button id="plugboard-help" class="help-btn">Help</button>
+    <!-- Plugboard Help Modal -->
+    <div id="plugboard-help-modal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <h3>Plugboard Configuration Help</h3>
+        <ul>
+          <li>Click a letter to select it for pairing.</li>
+          <li>Click another letter to create a connection.</li>
+          <li>Double-click a blue connection to remove it.</li>
+          <li>Connected letters are swapped during encryption.</li>
+        </ul>
+        <button id="close-help-btn">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Rotor Configuration Screen -->
+  <div id="rotors-screen" class="config-screen">
+    <div class="config-header">
+      <h2>Rotor Configuration</h2>
+      <button id="rotors-back" class="back-btn">Back</button>
+    </div>
+    <div id="rotors-area"></div>
+  </div>
+
+  <!-- JS Logic -->
+  <script type="module" src="config.js"></script>
+  <script type="module">
+    import { offsets, enigmaImage } from './enigma.js';
+    import { redrawAll } from './helper.js';
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const startBtn = document.getElementById('start-btn');
+      const introScreen = document.getElementById('intro-screen');
+      const appContainer = document.getElementById('app-container');
+
+      if (startBtn && introScreen && appContainer) {
+        startBtn.addEventListener('click', function() {
+          appContainer.style.display = 'flex';
+          introScreen.classList.add('fade-out');
+          setTimeout(() => {
+            introScreen.style.display = 'none';
+          }, 1000);
+        });
+      }
+
+      document.getElementById('reset-btn').addEventListener('click', () => {
+        offsets[0] = window.configuredOffsets ? window.configuredOffsets[0] : 0;
+        offsets[1] = window.configuredOffsets ? window.configuredOffsets[1] : 0;
+        offsets[2] = window.configuredOffsets ? window.configuredOffsets[2] : 0;
+        const ctx = document.getElementById("canvas").getContext("2d");
+        redrawAll(ctx, offsets, enigmaImage);
+      });
+    });
+  </script>
+</body>
+</html>

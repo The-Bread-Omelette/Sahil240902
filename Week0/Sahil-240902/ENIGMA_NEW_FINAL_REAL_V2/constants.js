@@ -19,9 +19,7 @@ export const LAMP_FONT = "20px Arial";
 export const ROTOR_PERMUTATIONS = [
   "EKMFLGDQVZNTOWYHXUSPAIBRCJ", // Slow rotor
   "AJDKSIRUXBLHWTMCQGZNPYFVOE", // Medium rotor
-  "BDFHJLCPRTXVZNYEIWGAKMUSQO", // Fast rotor
-  "ESOVPZJAYQUIRHXLNFTGKDCMWB",
-  "VZBRGITYUPSDNHLXAWMJQOFECK"
+  "BDFHJLCPRTXVZNYEIWGAKMUSQO"  // Fast rotor (fixed)
 ];
 
 export const ROTOR_BGCOLOR = "#BBAA77";
@@ -42,6 +40,7 @@ export const posirot = ROTOR_LOCATIONS.map(loc => ({
   x: loc.x - ROTOR_WIDTH / 2,
   y: loc.y - ROTOR_HEIGHT / 2
 }));
+
 export const poserot = ROTOR_LOCATIONS.map(loc => ({
   x: loc.x + ROTOR_WIDTH / 2,
   y: loc.y + ROTOR_HEIGHT / 2

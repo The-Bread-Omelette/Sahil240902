@@ -223,10 +223,11 @@ html, body {
 }
 
 .config-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
+  position: relative; /* allows absolute positioning inside */
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 15px;
+  padding: 0 0px;
 }
 
 .config-header h2 {
@@ -236,12 +237,17 @@ html, body {
   margin: 0;
 }
 
-.back-btn, .help-btn {
+.back-btn {
+  position: absolute;
+  right: 20px; /* distance from right edge of the screen */
+  top: 10%;
+  transform: translateY(0);
+  transform: translateX(500%);
   background: #1a2233;
   color: #f9e4b7;
   border: none;
   border-radius: 8px;
-  padding: 10px 20px;
+  padding: 15px 30px;
   font-size: 16px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -352,10 +358,12 @@ html, body {
 .section-title {
   font-size: 1.5em;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+  margin-top: 5px;
   color: #f9e4b7;
   border-bottom: 2px solid #bbaa77;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
   width: 80%;
   max-width: 700px;
 }

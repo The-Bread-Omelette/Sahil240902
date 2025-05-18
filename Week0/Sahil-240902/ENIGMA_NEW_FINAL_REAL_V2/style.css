@@ -1,0 +1,324 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Orbitron', sans-serif;
+  background: url('background.jpg') no-repeat center center/cover;
+  color: #ffe066;
+}
+
+#intro-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: url('intro-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  transition: opacity 1s;
+}
+#intro-screen.fade-out { opacity: 0; pointer-events: none; }
+
+#app-container {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#sidebar {
+  width: 300px;
+  height: 100vh;
+  padding: 30px 20px;
+  background-color: rgba(25, 20, 10, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 4px 0 10px rgba(0,0,0,0.6);
+  box-sizing: border-box;
+}
+
+#main-content {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+#canvas {
+  background: black;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5);
+  display: block;
+  width: 800px;
+  height: 600px;
+  max-width: 100%;
+  max-height: 100%;
+  margin: 0 auto;
+}
+
+/* Modal styling */
+#config-modal {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-bg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(38, 24, 7, 0.8) url('background.jpg') center/cover no-repeat;
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+
+.modal-content {
+  background: rgba(58, 42, 19, 0.95);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+  text-align: center;
+  max-width: 400px;
+  border: 2px solid #bbaa77;
+}
+
+.config-option {
+  display: block;
+  width: 100%;
+  padding: 16px;
+  margin: 15px 0;
+  background: #1a2233;
+  color: #f9e4b7;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background 0.2s;
+}
+.config-option:hover {
+  background: #263248;
+  transform: translateY(-2px);
+}
+
+/* Full Screen Configuration Styling */
+.config-screen {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  z-index: 200;
+  background: url('background.jpg') center/cover no-repeat;
+  display: none;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: fadeIn 0.4s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(1.03); }
+  to { opacity: 1; transform: scale(1); }
+}
+@keyframes fadeOut {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.97); }
+}
+
+.config-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.config-header h2 {
+  color: #f9e4b7;
+  font-family: 'Georgia', serif;
+  font-size: 32px;
+  margin: 0;
+}
+
+.back-btn, .help-btn {
+  background: #1a2233;
+  color: #f9e4b7;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.help-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+}
+
+/* Plugboard UI */
+#plugboard-area {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  margin: 0 auto;
+  background: url('wood-panel.jpg') center center/cover no-repeat;
+  border-radius: 32px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 40px 0 0 0;
+  min-height: 500px;
+}
+
+.plugboard-pin {
+  width: 60px;
+  height: 90px;
+  margin: 16px;
+  background: #2a2c39;
+  border: 3px solid #bbaa77;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  z-index: 2;
+}
+.plugboard-pin.selected .plugboard-light {
+  background: #ffe066;
+  box-shadow: 0 0 8px #ffe06688;
+}
+.plugboard-pin.paired .plugboard-light {
+  background: #2ec4ff;
+  box-shadow: 0 0 8px #58aaff;
+}
+.plugboard-letter {
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #f9e4b7;
+  margin-bottom: 8px;
+}
+.plugboard-light {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #444;
+  border: 2px solid #888;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.pair-connection {
+  position: absolute;
+  background: #0b1c3c;
+  border-radius: 18px;
+  box-shadow: 0 0 24px #1a2c5c99;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 24px;
+  z-index: 10;
+  animation: pairAppear 0.35s cubic-bezier(.4,2,.6,1);
+}
+@keyframes pairAppear {
+  from { opacity: 0; transform: scale(0.7);}
+  to { opacity: 1; transform: scale(1);}
+}
+.pair-connection .pair-letter {
+  font-size: 2em;
+  color: #8ed6ff;
+  font-weight: bold;
+  margin: 0 10px;
+}
+.pair-connection .exchange {
+  font-size: 1.7em;
+  color: #8ed6ff;
+}
+
+/* Plugboard Help Modal */
+#plugboard-help-modal {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.6);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 300;
+}
+#plugboard-help-modal .modal-content {
+  background: #222c3c;
+  color: #f9e4b7;
+  border-radius: 18px;
+  padding: 32px 40px;
+  box-shadow: 0 8px 32px #000a;
+  text-align: center;
+}
+
+/* Rotor Config UI */
+#rotors-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  margin-top: 30px;
+}
+.rotor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+.rotor-box {
+  background: #222c3c;
+  border: 2px solid #bbaa77;
+  border-radius: 14px;
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+.rotor-box.selected {
+  border-color: #2ec4ff;
+  box-shadow: 0 0 12px #2ec4ff88;
+}
+.rotor-box input[type="text"] {
+  font-family: monospace;
+  font-size: 1em;
+  width: 350px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  padding: 4px 8px;
+}
+.rotor-slot {
+  display: inline-block;
+  min-width: 180px;
+  background: #2a2c39;
+  border-radius: 10px;
+  border: 2px solid #bbaa77;
+  margin: 0 12px;
+  padding: 10px 16px;
+  color: #f9e4b7;
+  font-size: 1.2em;
+  cursor: pointer;
+}
+#rotor-confirm-btn {
+  margin-top: 30px;
+  padding: 12px 32px;
+  background: #1a2233;
+  color: #f9e4b7;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  cursor: pointer;
+}
