@@ -64,14 +64,23 @@
   <!-- Rotor Configuration -->
   <div id="rotors-screen" class="config-screen">
     <div class="config-header">
-      <h2>Rotor Configuration</h2>
-      <button id="rotors-back" class="back-btn">Back</button>
+        <button class="back-btn" id="rotors-back">Back</button>
+        <h2>Rotor Configuration</h2>
     </div>
-    <div id="rotors-area"></div>
-    <div id="rotor-config-footer">
-      <button id="rotor-save-btn" class="vintage-btn">Save Rotors</button>
+    
+    <div class="section-title">Rotor Permutations</div>
+    <div class="rotor-section">
+        <div id="rotors-area"></div>
     </div>
+    
+    <div class="section-title">Rotor Offsets</div>
+    <div class="offset-section">
+        <div id="offset-area"></div>
+    </div>
+    
+    <button class="vintage-btn" id="rotor-save-btn">Save Rotor Configuration</button>
   </div>
+
 
   <script type="module" src="config.js"></script>
   <script type="module" src="plugboard.js"></script>

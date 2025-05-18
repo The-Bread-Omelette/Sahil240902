@@ -340,3 +340,115 @@ html, body {
     border-bottom: 2px solid #ffe066;
   }
 }
+
+/* Add these styles to center and improve rotor config */
+#rotors-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+.section-title {
+  font-size: 1.5em;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #f9e4b7;
+  border-bottom: 2px solid #bbaa77;
+  padding-bottom: 10px;
+  width: 80%;
+  max-width: 700px;
+}
+
+/* Rotor permutation boxes */
+.rotor-section {
+  width: 80%;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+.rotor-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  background: rgba(30, 30, 40, 0.7);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.gear-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  color: #bbaa77;
+}
+
+.rotor-box {
+  flex-grow: 1;
+  background: #333;
+  padding: 10px 15px;
+  border-radius: 5px;
+  border: 1px solid #555;
+  color: #f9e4b7;
+  font-family: monospace;
+  letter-spacing: 2px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.rotor-box:hover {
+  background: #3a3a3a;
+  border-color: #bbaa77;
+}
+
+/* Position labels */
+.rotor-pos-label {
+  margin-left: 15px;
+  padding: 5px 10px;
+  background: #2a4a80;
+  border-radius: 4px;
+  font-size: 0.9em;
+}
+
+/* Offset section */
+.offset-section {
+  width: 80%;
+  max-width: 700px;
+  margin-bottom: 30px;
+}
+
+.offset-row {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.offset-container {
+  text-align: center;
+}
+
+.offset-box {
+  width: 50px;
+  height: 50px;
+  background: #333;
+  color: #f9e4b7;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 1.5em;
+  cursor: pointer;
+  border: 1px solid #555;
+}
+
+.offset-box:hover {
+  background: #3a3a3a;
+  border-color: #bbaa77;
+}
+
+/* Save button */
+#rotor-save-btn {
+  width: 300px;
+  margin-top: 30px;
+  padding: 12px;
+}
