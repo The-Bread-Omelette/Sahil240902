@@ -4,7 +4,6 @@ An implementation of the historic Enigma cipher machine used in WWII, featuring 
 
 ## Features
 - **Object-oriented design** with modular components (rotors, reflector, plugboard)
-- **CLI and GUI versions**
 - Configurable settings:
   - Rotor types (I-V)
   - Ring settings & positions
