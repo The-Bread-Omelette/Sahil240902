@@ -187,6 +187,7 @@ saveBtn.addEventListener('click', () => {
   setTimeout(() => {
     rotorsScreen.style.display = 'none';
     rotorsScreen.style.animation = 'fadeIn 0.4s ease-out';
+    document.getElementById('app-container').style.display = 'flex'; // <-- show main window
   }, 350);
 });
 

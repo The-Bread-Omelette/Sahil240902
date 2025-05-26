@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/sahil/OneDrive/Desktop/ENIGMA_NEW",
-      "program": "c:/Users/sahil/OneDrive/Desktop/ENIGMA_NEW/build/Debug/outDebug",
+      "cwd": "c:/Users/sahil/OneDrive/Desktop/ENIGMA_FINAL",
+      "program": "c:/Users/sahil/OneDrive/Desktop/ENIGMA_FINAL/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=800, initial-scale=1.0"/>
   <title>Enigma Simulator</title>
@@ -18,7 +19,7 @@
   <div id="app-container" style="display: none;">
     <div id="sidebar">
       <h1 class="main-title">ENIGMA SIMULATOR</h1>
-      <button class="vintage-btn" id="reset-btn">Reset Offsets</button>
+      <button id="reset-offsets-btn" class="vintage-btn">Reset Offsets</button>
       <button class="vintage-btn" id="config-btn">Configure</button>
     </div>
     <div id="main-content">
@@ -69,6 +70,7 @@
     
     <div class="config-header">
       <h2>Rotor Configuration</h2>
+      <button class="back-btn" id="rotors-back">Back</button>
     </div>
 
     <div class="section-title">Rotor Permutations</div>
@@ -81,7 +83,6 @@
         <div id="offset-area"></div>
     </div>
     
-    <button class="back-btn" id="rotors-back">hell</button>
     <button class="vintage-btn" id="rotor-save-btn">Save Rotor Configuration</button>
   </div>
 
