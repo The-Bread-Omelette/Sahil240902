@@ -9,7 +9,7 @@ using namespace std;
 
 int a;
 int b;
-int m;
+int m=256;
 int a_inverse;
 
 int find_a_inverse(){
@@ -27,13 +27,12 @@ void input(int n){
     cin>>a;
     cout<<"Input the value of b: ";
     cin>>b;
-    cout<<"Input the value of m: ";
-    cin>>m;
+    cout<<"The value of m is   : 256";
     a=a%m;
     b=b%m;
     a_inverse=find_a_inverse();
     if(a_inverse==-1){
-        if(n%5==0) cout<<"HINT: a and b should be co-prime.\n";
+        if(n%5==0) cout<<"HINT: a and m should be co-prime.\n";
         cout<<"Invalid Input Sorry :( \n";
         input(n+1);
     }
@@ -76,9 +75,10 @@ char decryptChar(char c){
 }
 
 void encryptString(){
-    if(gcd(a,NO_OF_CHAR)==1){
-        cout<<"Invalid a, change settings.\n"; input(0);
-    }    while(true){
+    // if(gcd(a,NO_OF_CHAR)==1){
+    //     cout<<"Invalid a, change settings.\n"; input(0);
+    // }    // mujhe ni yaad ye kyu tha idhar 
+        while(true){
         cout<<"Input your Message: ";
         string s;
         getline(cin, s);
